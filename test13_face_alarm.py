@@ -22,18 +22,20 @@ while True:
         if not face_detected:
             playsound("alert.mp3")
             face_detected = True
+            sound_playing = True
     else:
         # 如果之前检测到人脸，停止播放
-        if face_detected:
-            playsound(None)  # 停止声音
+        if sound_playing:
+            playsound("alert.mp3", False)  # 停止声音
+            sound_playing = False
             face_detected = False
     # 视频太大的话 可以将视频resize成目标大小
-    # img = cv2.resize(img, (640, 360))
+    img = cv2.resize(img, (640, 360))
     cv2.imshow('image', img)
-    key = cv2.waitKey(1)  # 每一帧的时间间隔。单位为毫秒。如果为零，则表示播放速度为最大值（每一帧之间没有间隔）。
-    # 如果按下 'q' 键，退出程序
-    if key == ord('q'):
+    # 按下'q'键退出循环
+    if cv2.waitKey(1) & 0xFF == ord('q'):
         break
+
 
 # 释放摄像头和关闭窗口
 cap.release()
