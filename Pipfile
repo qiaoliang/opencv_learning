@@ -12,6 +12,7 @@ playsound = "*"
 opencv-python-headless = "*"
 pyobjc = "*"
 pygame = "*"
+opencv-contrib-python = "*"
 
 [dev-packages]
 
